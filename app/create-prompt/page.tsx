@@ -16,7 +16,7 @@ const page: React.FC<pageProps> = () => {
     prompt: "",
     tag: "",
   });
-  const session = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
 
   const createPrompt = async (e: Event) => {

@@ -58,6 +58,7 @@ const Form: React.FC<FormProps> = ({
           <button
             className="px-5 py-1.5 text-sm bg-primary-orange text-white rounded-full"
             type="submit"
+            onClick={handleSubmit}
             disabled={submitting}
           >
             {submitting ? `${type}ing...` : `${type}`}
