@@ -35,7 +35,6 @@ const Feed: React.FC<FeedProps> = () => {
   const [allPosts, setAllPosts] = useState([]);
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target == null) return;
     setSearchText(e.target.value);
     let filteredPosts: any;
     if (searchText != null && searchText[0] !== "#") {
@@ -76,7 +75,7 @@ const Feed: React.FC<FeedProps> = () => {
         <input
           type="text"
           placeholder="Search for a prompt"
-          value={searchText}
+          value={searchText ?? ""}
           onChange={handleSearchChange}
           required
           className="search_input peer"
