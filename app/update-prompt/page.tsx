@@ -9,7 +9,7 @@ import { Router } from "next/router";
 
 type pageProps = {};
 
-const page: React.FC<pageProps> = () => {
+const UpdatePrompt: React.FC<pageProps> = () => {
   const [submitting, setSubmitting] = useState(false);
   const searchParams = useSearchParams();
   const promptId = searchParams.get("id");
@@ -63,4 +63,4 @@ const page: React.FC<pageProps> = () => {
     />
   );
 };
-export default page;
+export default UpdatePrompt;

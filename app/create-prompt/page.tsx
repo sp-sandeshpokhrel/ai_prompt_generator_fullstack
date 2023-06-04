@@ -6,11 +6,10 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import Form from "@components/Form";
-import { Router } from "next/router";
 
 type pageProps = {};
 
-const page: React.FC<pageProps> = () => {
+const CreatePrompt: React.FC<pageProps> = () => {
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
     prompt: "",
@@ -52,4 +51,4 @@ const page: React.FC<pageProps> = () => {
     />
   );
 };
-export default page;
+export default CreatePrompt;

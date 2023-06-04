@@ -7,7 +7,7 @@ import Profile from "@components/Profile";
 
 type pageProps = { params: { id: string } };
 
-const page: React.FC<pageProps> = ({ params }) => {
+const YourProfile: React.FC<pageProps> = ({ params }) => {
   const [posts, setPosts] = useState([]);
   const [username, setUsername] = useState("");
   useEffect(() => {
@@ -28,4 +28,4 @@ const page: React.FC<pageProps> = ({ params }) => {
     />
   );
 };
-export default page;
+export default YourProfile;

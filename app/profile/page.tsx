@@ -9,7 +9,7 @@ import Profile from "@components/Profile";
 
 type pageProps = {};
 
-const page: React.FC<pageProps> = () => {
+const MyProfile: React.FC<pageProps> = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const [posts, setPosts] = useState([]);
@@ -51,4 +51,4 @@ const page: React.FC<pageProps> = () => {
     />
   );
 };
-export default page;
+export default MyProfile;
