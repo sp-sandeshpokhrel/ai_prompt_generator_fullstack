@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { useState, useEffect } from "react";
 import PromptCard from "./PromptCard";
 import { Post } from "@utils/types";
@@ -34,7 +34,8 @@ const Feed: React.FC<FeedProps> = () => {
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
 
-  const handleSearchChange = (e: Event) => {
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target == null) return;
     setSearchText(e.target.value);
     let filteredPosts: any;
     if (searchText != null && searchText[0] !== "#") {
