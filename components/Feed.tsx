@@ -7,7 +7,7 @@ import PromptCard from "./PromptCard";
 type FeedProps = {};
 type PromptListProps = {
   data: any[];
-  handleTagClick: () => void;
+  handleTagClick: (tag: string) => void;
 };
 const PromptCardList: React.FC<PromptListProps> = ({
   data,
@@ -29,9 +29,30 @@ const PromptCardList: React.FC<PromptListProps> = ({
 const Feed: React.FC<FeedProps> = () => {
   const [searchText, setSearchText] = useState("");
   const [posts, setPosts] = useState([]);
+  const [allPosts, setAllPosts] = useState([]);
 
   const handleSearchChange = (e: Event) => {
     setSearchText(e.target.value);
+    let filteredPosts;
+    if (searchText[0] !== "#") {
+      filteredPosts = allPosts.filter((post) =>
+        post.prompt.toLowerCase().includes(searchText)
+      );
+    } else {
+      filteredPosts = allPosts.filter((post) =>
+        post.tag.toLowerCase().includes(searchText)
+      );
+    }
+    setPosts(filteredPosts);
+  };
+  const handleTagClick = (tag: string) => {
+    setSearchText(tag);
+    let filteredPosts;
+
+    filteredPosts = allPosts.filter((post) =>
+      post.tag.toLowerCase().includes(searchText)
+    );
+    setPosts(filteredPosts);
   };
 
   useEffect(() => {
@@ -40,6 +61,7 @@ const Feed: React.FC<FeedProps> = () => {
       const data = await response.json();
 
       setPosts(data);
+      setAllPosts(data);
     };
     fetchPosts();
   }, []);
@@ -55,7 +77,7 @@ const Feed: React.FC<FeedProps> = () => {
           className="search_input peer"
         />
       </form>
-      <PromptCardList data={posts} handleTagClick={() => {}} />
+      <PromptCardList data={posts} handleTagClick={handleTagClick} />
     </section>
   );
 };
