@@ -30,20 +30,22 @@ const PromptCardList: React.FC<PromptListProps> = ({
 };
 
 const Feed: React.FC<FeedProps> = () => {
-  const [searchText, setSearchText] = useState<string | null>("");
+  const [searchText, setSearchText] = useState("");
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const search = e.target.value;
     setSearchText(e.target.value);
+    console.log(search);
     let filteredPosts: any;
-    if (searchText != null && searchText[0] !== "#") {
+    if (searchText[0] !== "#") {
       filteredPosts = allPosts.filter((post: Post) =>
-        post.prompt.toLowerCase().includes(searchText)
+        post.prompt.toLowerCase().includes(search)
       );
-    } else if (searchText != null) {
+    } else {
       filteredPosts = allPosts.filter((post: Post) =>
-        post.tag.toLowerCase().includes(searchText)
+        post.tag.toLowerCase().includes(search)
       );
     }
     setPosts(filteredPosts);
@@ -51,12 +53,10 @@ const Feed: React.FC<FeedProps> = () => {
   const handleTagClick = (tag: string) => {
     setSearchText(tag);
     let filteredPosts;
-    if (searchText != null) {
-      filteredPosts = allPosts.filter((post: Post) =>
-        post.tag.toLowerCase().includes(searchText)
-      );
-      setPosts(filteredPosts);
-    }
+    filteredPosts = allPosts.filter((post: Post) =>
+      post.tag.toLowerCase().includes(tag)
+    );
+    setPosts(filteredPosts);
   };
 
   useEffect(() => {
