@@ -15,7 +15,7 @@ const Nav: React.FC<NavProps> = () => {
 
   useEffect(() => {
     const setProvidersfun = async () => {
-      const response = await getProviders();
+      const response: any = await getProviders();
       setProviders(response);
     };
     setProvidersfun();
@@ -56,7 +56,7 @@ const Nav: React.FC<NavProps> = () => {
         ) : (
           <>
             {providers &&
-              Object.values(providers).map((provider) => (
+              Object.values(providers).map((provider: any) => (
                 <button
                   type="button"
                   key={provider.name}
@@ -113,7 +113,7 @@ const Nav: React.FC<NavProps> = () => {
         ) : (
           <>
             {providers &&
-              Object.values(providers).map((provider) => (
+              Object.values(providers).map((provider: any) => (
                 <button
                   type="button"
                   key={provider.name}

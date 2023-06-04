@@ -1,12 +1,13 @@
 import React from "react";
 import PromptCard from "./PromptCard";
+import { Post } from "@utils/types";
 
 type ProfileProps = {
   name: string;
   desc: string;
   data: any;
-  handleEdit: () => void;
-  handleDelete: () => void;
+  handleEdit: (post: Post) => void;
+  handleDelete: (post: Post) => void;
 };
 
 const Profile: React.FC<ProfileProps> = ({
@@ -23,10 +24,11 @@ const Profile: React.FC<ProfileProps> = ({
       </h1>
       <p className="desc text-left">{desc}</p>
       <div className="mt-10 prompt_layout">
-        {data.map((post) => (
+        {data.map((post: Post) => (
           <PromptCard
             key={post._id}
             post={post}
+            handleTagClick={() => {}}
             handleEdit={() => handleEdit && handleEdit(post)}
             handleDelete={() => handleDelete && handleDelete(post)}
           />

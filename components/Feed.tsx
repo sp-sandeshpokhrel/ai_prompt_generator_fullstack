@@ -3,6 +3,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import PromptCard from "./PromptCard";
+import { Post } from "@utils/types";
 
 type FeedProps = {};
 type PromptListProps = {
@@ -20,6 +21,8 @@ const PromptCardList: React.FC<PromptListProps> = ({
           key={post._id}
           post={post}
           handleTagClick={handleTagClick}
+          handleEdit={() => {}}
+          handleDelete={() => {}}
         />
       ))}
     </div>
@@ -27,19 +30,19 @@ const PromptCardList: React.FC<PromptListProps> = ({
 };
 
 const Feed: React.FC<FeedProps> = () => {
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState<string | null>("");
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
 
   const handleSearchChange = (e: Event) => {
     setSearchText(e.target.value);
-    let filteredPosts;
-    if (searchText[0] !== "#") {
-      filteredPosts = allPosts.filter((post) =>
+    let filteredPosts: any;
+    if (searchText != null && searchText[0] !== "#") {
+      filteredPosts = allPosts.filter((post: Post) =>
         post.prompt.toLowerCase().includes(searchText)
       );
-    } else {
-      filteredPosts = allPosts.filter((post) =>
+    } else if (searchText != null) {
+      filteredPosts = allPosts.filter((post: Post) =>
         post.tag.toLowerCase().includes(searchText)
       );
     }
@@ -48,11 +51,12 @@ const Feed: React.FC<FeedProps> = () => {
   const handleTagClick = (tag: string) => {
     setSearchText(tag);
     let filteredPosts;
-
-    filteredPosts = allPosts.filter((post) =>
-      post.tag.toLowerCase().includes(searchText)
-    );
-    setPosts(filteredPosts);
+    if (searchText != null) {
+      filteredPosts = allPosts.filter((post: Post) =>
+        post.tag.toLowerCase().includes(searchText)
+      );
+      setPosts(filteredPosts);
+    }
   };
 
   useEffect(() => {

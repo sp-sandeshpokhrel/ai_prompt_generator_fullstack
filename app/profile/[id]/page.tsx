@@ -25,6 +25,8 @@ const YourProfile: React.FC<pageProps> = ({ params }) => {
       name={username}
       desc={`Welcome to ${username} profile`}
       data={posts}
+      handleEdit={() => {}}
+      handleDelete={() => {}}
     />
   );
 };
