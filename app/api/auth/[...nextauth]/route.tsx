@@ -13,12 +13,13 @@ type Profile = {
   name: string;
   picture: string;
 };
-
+const GoogleId = process.env.GOOGLE_ID || "none";
+const GoogleSecret = process.env.GOOGLE_CLIENT_SECRET || "none";
 const handler = NextAuth({
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID || "none",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "none",
+      clientId: GoogleId,
+      clientSecret: GoogleSecret,
     }),
   ],
   callbacks: {
